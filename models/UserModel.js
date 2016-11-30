@@ -11,7 +11,7 @@ var users = new Datastore({
 });
 
 module.exports = class UserModel extends Model {
-    letructor(data = {}) {
+    constructor(data = {}) {
         super();
         if (!data.email) throw new Error('Email is required');
         if (!data.password) throw new Error('Password is required');

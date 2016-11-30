@@ -23,6 +23,6 @@ server.register([{
             throw err;
         }
 
-        console.log('Server running at:', server.info);
+        console.log('Server running at:', server.info.uri);
     });
 });
