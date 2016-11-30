@@ -4,7 +4,7 @@ let jwt = require('jsonwebtoken');
 let Boom = require('boom');
 
 module.exports = class AuthController {
-    letructor(UserModel, JWT_SECRET) {
+    constructor(UserModel, JWT_SECRET) {
         this.userModel = UserModel;
         this.JWT_SECRET = JWT_SECRET;
     }

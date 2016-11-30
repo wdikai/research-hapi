@@ -3,7 +3,7 @@
 let Boom = require('boom');
 
 module.exports = class UsersController {
-    letructor(UserModel) {
+    constructor(UserModel) {
         this.userModel = UserModel;
     }
 
