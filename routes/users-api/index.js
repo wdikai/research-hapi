@@ -3,6 +3,7 @@
 let Joi = require('joi');
 
 let UsersController = require('../../controllers/UsersController');
+let userValidators = require('../../validators/userValidators');
 
 exports.register = function (server, options, next) {
 

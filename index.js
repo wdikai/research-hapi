@@ -9,15 +9,14 @@ server.connection({
 });
 
 // Add the route
-server.register([{
-    register: require('./models')
-}, {
-    register: require('./auth/jwtAuth')
-}, {
-    register: require('./routes/auth-api')
-},{
-    register: require('./routes/users-api')
-}], function () {
+server.register([
+    require('inert'),
+    require('./models'),
+    require('./auth/jwtAuth'),
+    require('./routes/static'),
+    require('./routes/auth-api'),
+    require('./routes/users-api')
+], function () {
     server.start((err) => {
         if (err) {
             throw err;

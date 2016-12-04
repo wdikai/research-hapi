@@ -1,0 +1,11 @@
+table {
+    width: 100%
+}
+
+thead>tr {
+    text-align: left;
+}
+
+thead {
+    border-bottom: 1px solid lightgray;
+}
