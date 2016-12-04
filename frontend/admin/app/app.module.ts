@@ -31,8 +31,10 @@ import {
 } from './components/users/users.component'
 
 import {
-  AccessService
-} from './services/access.service';
+  AuthService,
+  CredentialsService,
+  UserService
+} from './services/index';
 
 
 const appRoutes: Routes = [{
@@ -63,7 +65,9 @@ const appRoutes: Routes = [{
     UsersComponent
   ],
   providers: [
-    AccessService, {
+    AuthService, 
+    CredentialsService, 
+    UserService,{
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     }

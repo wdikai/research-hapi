@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   UserService
-} from '../../services/user.service';
+} from '../../services/index';
 import {
   IUser
 } from '../../models/IUser';

@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import {
   AuthService
-} from '../../services/auth.service';
+} from '../../services/index';
 
 @Component({
   selector: 'login',

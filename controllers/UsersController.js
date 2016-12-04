@@ -37,7 +37,7 @@ module.exports = class UsersController {
             .then(user => {
                 if (!user) throw Boom.notFound();
 
-                reply(users);
+                reply(user);
             })
             .catch(err => err.isBoom ? reply(err) : reply(Boom.wrap(err, 'Internal NeDB error')));
     }

@@ -8,10 +8,11 @@ import {
 import {
     Router
 } from '@angular/router';
+import 'rxjs/add/operator/toPromise';
+
 import {
     IUser
 } from '../models/IUser';
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
@@ -33,8 +34,23 @@ export class AuthService {
             .then(res => res.json() as IUser);
     }
 
-    setIsCurrent(user: IUser) {
+    getCurrent(): Promise < any > {
+        let user: IUser;
+        try {
+            let userJson = localStorage.getItem('user');
+            user = JSON.parse(userJson) as IUser;
+            return Promise.resolve(user);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+
+    setIsCurrent(user: IUser): IUser {
+        let token = user ? user.token : '';
+
         localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('token', user.token);
+        if (token as string) localStorage.setItem('token', token);
+
+        return user;
     }
 }

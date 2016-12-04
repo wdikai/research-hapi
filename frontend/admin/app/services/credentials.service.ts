@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 
 @Injectable()
-export class AccessService {
+export class CredentialsService {
     constructor(private router: Router) {}
 
     getToken(): string {

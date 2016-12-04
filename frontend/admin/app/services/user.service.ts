@@ -9,8 +9,8 @@ import {
     IUser
 } from '../models/IUser';
 import {
-    AccessService
-} from './access.service';
+    CredentialsService
+} from './credentials.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -21,7 +21,7 @@ export class UserService {
         'Content-Type': 'application/json'
     });
 
-    constructor(private http: Http, private acces: AccessService) {
+    constructor(private http: Http, private acces: CredentialsService) {
         let token = acces.getToken();
         this.headers.append('Authorization', `Bearer ${token}`);
     }
