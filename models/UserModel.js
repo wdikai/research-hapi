@@ -67,7 +67,7 @@ module.exports = class UserModel extends Model {
     }) {
         return super
             .$find(users, options)
-            .map(user => new UserModel(user));
+            .then(users => users.map(user =>new UserModel(user)));
     }
 
     static findOne(options = {
