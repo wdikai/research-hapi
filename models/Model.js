@@ -3,7 +3,16 @@
 let uuid = require('uuid');
 
 module.exports = class Model {
-    $save(model, data) {
+    constructor() {
+        this._data = {};
+    }
+    
+    toJSON() {
+        return this._data;
+    }
+
+    $save(model, instance) {
+        let data = instance.toJSON();
         if (!data.id) {
             data.id = uuid.v4();
             return new Promise((resolve, reject) => {

@@ -11,16 +11,16 @@ var users = new Datastore({
 });
 
 module.exports = class UserModel extends Model {
-    constructor(data = {}) {
-        super();
+    constructor(data) {
+        if (!data) return null;
         if (!data.email) throw new Error('Email is required');
         if (!data.password) throw new Error('Password is required');
 
-        this._data = {};
-
+        super();
         this.id = data.id;
         this.email = data.email;
         this.password = data.password;
+        this.name = data.name;
     }
 
     get id() {
@@ -44,18 +44,21 @@ module.exports = class UserModel extends Model {
         this._data.password = value;
     }
 
+    get name() {
+        return this._data.name;
+    }
+    set name(value) {
+        this._data.name = value;
+    }
+
     /**
      * Save user
      * @return {Promise}
      */
     save() {
         return super
-            .$save(users, this._data)
+            .$save(users, this)
             .then(data => new UserModel(data));
-    }
-
-    toJSON() {
-        return this._data;
     }
 
     static find(options = {
@@ -64,7 +67,7 @@ module.exports = class UserModel extends Model {
     }) {
         return super
             .$find(users, options)
-            .then(users => users.map(user => new UserModel(user)));
+            .map(user => new UserModel(user));
     }
 
     static findOne(options = {
@@ -73,7 +76,7 @@ module.exports = class UserModel extends Model {
     }) {
         return super
             .$findOne(users, options)
-            .then(user => user ? new UserModel(user) : null);
+            .then(user => new UserModel(user));
     }
 
     static count(options = {
