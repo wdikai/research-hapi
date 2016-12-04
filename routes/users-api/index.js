@@ -41,10 +41,7 @@ exports.register = function (server, options, next) {
         config: {
             auth: 'jwt',
             validate: {
-                payload: {
-                    email: Joi.string().min(10).max(50).required(),
-                    password: Joi.string().min(6).max(50).required()
-                }
+                payload: userValidators.userBody
             }
         }
     });

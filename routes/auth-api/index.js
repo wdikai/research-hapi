@@ -3,6 +3,7 @@
 let Joi = require('joi');
 
 let AuthController = require('../../controllers/AuthController');
+let userValidators = require('../../validators/userValidators');
 
 exports.register = function (server, options, next) {
 
@@ -17,10 +18,7 @@ exports.register = function (server, options, next) {
         },
         config: {
             validate: {
-                payload: {
-                    email: Joi.string().min(10).max(50).required(),
-                    password: Joi.string().min(6).max(50).required()
-                }
+                payload: userValidators.userCredentials
             }
         }
     });
