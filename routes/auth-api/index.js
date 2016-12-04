@@ -10,7 +10,7 @@ exports.register = function (server, options, next) {
     let JWT_SECRET = server.app.JWT_SECRET;
     server.route({
         method: 'POST',
-        path: '/local',
+        path: '/api/auth/local',
         handler: function (request, reply) {
             var controller = new AuthController(UserModel, JWT_SECRET);
             controller.local(request, reply);

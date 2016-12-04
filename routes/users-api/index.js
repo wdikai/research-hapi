@@ -7,10 +7,11 @@ let UsersController = require('../../controllers/UsersController');
 exports.register = function (server, options, next) {
 
     let db = server.app.db;
+    let apiUrl = '/api/users'
 
     server.route({
         method: 'GET',
-        path: '/users',
+        path: apiUrl,
         handler: function (request, reply) {
             var controller = new UsersController(server.app.models.UserModel);
             controller.getUsers(request, reply);
@@ -23,7 +24,7 @@ exports.register = function (server, options, next) {
 
     server.route({
         method: 'GET',
-        path: '/users/{id}',
+        path: `${apiUrl}/{id}`,
         handler: function (request, reply) {
             var controller = new UsersController(server.app.models.UserModel);
             controller.getUser(request, reply);
@@ -32,7 +33,7 @@ exports.register = function (server, options, next) {
 
     server.route({
         method: 'POST',
-        path: '/users',
+        path: apiUrl,
         handler: function (request, reply) {
             var controller = new UsersController(server.app.models.UserModel);
             controller.create(request, reply);
